@@ -86,6 +86,8 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
     super.dispose();
   }
 
+  bool isLongPressed = false;
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -97,7 +99,7 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
           children: [
             Positioned(
               child: Container(
-                width: Constants.toolbarWidth,
+                width: Constants.toolbarWidth / 2,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
@@ -112,6 +114,7 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
             ),
             GestureDetector(
               onLongPressStart: (details) {
+                isLongPressed = true;
                 _updateLongPressedItemsFlags(
                   longPressYLocation: details.localPosition.dy,
                 );
@@ -122,9 +125,11 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
                 );
               },
               onLongPressEnd: (LongPressEndDetails details) {
+                isLongPressed = false;
                 _updateLongPressedItemsFlags(longPressYLocation: 0);
               },
               onLongPressCancel: () {
+                isLongPressed = false;
                 _updateLongPressedItemsFlags(longPressYLocation: 0);
               },
               child: ListView.builder(
