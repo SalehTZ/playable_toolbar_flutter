@@ -99,7 +99,7 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
           children: [
             Positioned(
               child: Container(
-                width: Constants.toolbarWidth / 2,
+                width: Constants.toolbarWidth,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: const BorderRadius.all(Radius.circular(15)),

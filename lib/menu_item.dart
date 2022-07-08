@@ -24,6 +24,7 @@ class SideBarItem extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: SizedBox(
         height: height + gutter,
+        width: Constants.toolbarWidth,
         child: Stack(
           children: [
             AnimatedScale(
