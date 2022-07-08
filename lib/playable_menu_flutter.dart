@@ -88,76 +88,63 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.white.withOpacity(0.9),
-        appBar: AppBar(
-          backgroundColor: Colors.white.withOpacity(0.9),
-          centerTitle: true,
-          title: const Text(
-            'Slidable Side Bar',
-            style: TextStyle(color: Colors.black),
-          ),
-          elevation: 0,
-        ),
-        body: Align(
-          alignment: Alignment.centerLeft,
-          child: Container(
-            height: Constants.toolbarHeight,
-            margin:
-                const EdgeInsets.only(left: Constants.toolbarHorizontalPadding),
-            child: Stack(
-              children: [
-                Positioned(
-                  child: Container(
-                    width: Constants.toolbarWidth,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 20,
-                          color: Colors.black.withOpacity(0.2),
-                        ),
-                      ],
-                    ),
+    return Scaffold(
+      backgroundColor: Colors.black.withOpacity(0.9),
+      body: Align(
+        alignment: Alignment.centerLeft,
+        child: Container(
+          height: Constants.toolbarHeight,
+          margin:
+              const EdgeInsets.only(left: Constants.toolbarHorizontalPadding),
+          child: Stack(
+            children: [
+              Positioned(
+                child: Container(
+                  width: Constants.toolbarWidth,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 20,
+                        color: Colors.black.withOpacity(0.2),
+                      ),
+                    ],
                   ),
                 ),
-                GestureDetector(
-                  onLongPressStart: (details) {
-                    _updateLongPressedItemsFlags(
-                      longPressYLocation: details.localPosition.dy,
+              ),
+              GestureDetector(
+                onLongPressStart: (details) {
+                  _updateLongPressedItemsFlags(
+                    longPressYLocation: details.localPosition.dy,
+                  );
+                },
+                onLongPressMoveUpdate: (details) {
+                  _updateLongPressedItemsFlags(
+                    longPressYLocation: details.localPosition.dy,
+                  );
+                },
+                onLongPressEnd: (LongPressEndDetails details) {
+                  _updateLongPressedItemsFlags(longPressYLocation: 0);
+                },
+                onLongPressCancel: () {
+                  _updateLongPressedItemsFlags(longPressYLocation: 0);
+                },
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: widget.toolbarItems.length,
+                  padding: const EdgeInsets.all(10),
+                  itemBuilder: (context, index) {
+                    return SideBarItem(
+                      widget.toolbarItems[index],
+                      height: itemHeight,
+                      scrollScale: itemScrollScaleValues[index],
+                      isLongPressed: longPressedItemsFlags[index],
                     );
                   },
-                  onLongPressMoveUpdate: (details) {
-                    _updateLongPressedItemsFlags(
-                      longPressYLocation: details.localPosition.dy,
-                    );
-                  },
-                  onLongPressEnd: (LongPressEndDetails details) {
-                    _updateLongPressedItemsFlags(longPressYLocation: 0);
-                  },
-                  onLongPressCancel: () {
-                    _updateLongPressedItemsFlags(longPressYLocation: 0);
-                  },
-                  child: ListView.builder(
-                    controller: scrollController,
-                    itemCount: widget.toolbarItems.length,
-                    padding: const EdgeInsets.all(10),
-                    itemBuilder: (context, index) {
-                      return SideBarItem(
-                        widget.toolbarItems[index],
-                        height: itemHeight,
-                        scrollScale: itemScrollScaleValues[index],
-                        isLongPressed: longPressedItemsFlags[index],
-                      );
-                    },
-                  ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),
