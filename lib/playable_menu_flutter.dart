@@ -135,7 +135,7 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
               child: AnimatedContainer(
                 duration: Constants.longPressAnimationDuration,
                 width: isLongPressed
-                    ? Constants.toolbarWidth * 2
+                    ? Constants.toolbarWidth * 3
                     : Constants.toolbarWidth,
                 child: ListView.builder(
                   controller: scrollController,
