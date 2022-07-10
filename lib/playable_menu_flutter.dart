@@ -93,7 +93,9 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        height: Constants.toolbarHeight,
+        height: widget.toolbarItems.length > 10
+            ? Constants.toolbarHeight
+            : Constants.toolbarHeight / 2,
         margin: const EdgeInsets.only(left: Constants.toolbarHorizontalPadding),
         child: Stack(
           children: [
