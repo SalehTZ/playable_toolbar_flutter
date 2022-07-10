@@ -23,7 +23,7 @@ class SideBarItem extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: GestureDetector(
-        onTap: () => print("object ${toolbarItem.title} clicked."),
+        onTap: toolbarItem.onTap,
         child: SizedBox(
           height: height + gutter,
           // width: Constants.toolbarWidth,

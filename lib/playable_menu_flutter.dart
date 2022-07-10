@@ -132,8 +132,8 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
                 isLongPressed = false;
                 _updateLongPressedItemsFlags(longPressYLocation: 0);
               },
-              child: Container(
-                // duration: Constants.longPressAnimationDuration,
+              child: AnimatedContainer(
+                duration: Constants.longPressAnimationDuration,
                 width: isLongPressed
                     ? Constants.toolbarWidth * 3
                     : Constants.toolbarWidth,
