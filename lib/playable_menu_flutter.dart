@@ -137,18 +137,22 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
                 width: isLongPressed
                     ? Constants.toolbarWidth * 3
                     : Constants.toolbarWidth,
-                child: ListView.builder(
-                  controller: scrollController,
-                  itemCount: widget.toolbarItems.length,
-                  padding: const EdgeInsets.all(10),
-                  itemBuilder: (context, index) {
-                    return SideBarItem(
-                      widget.toolbarItems[index],
-                      height: itemHeight,
-                      scrollScale: itemScrollScaleValues[index],
-                      isLongPressed: longPressedItemsFlags[index],
-                    );
-                  },
+                child: ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context)
+                      .copyWith(scrollbars: false),
+                  child: ListView.builder(
+                    controller: scrollController,
+                    itemCount: widget.toolbarItems.length,
+                    padding: const EdgeInsets.all(10),
+                    itemBuilder: (context, index) {
+                      return SideBarItem(
+                        widget.toolbarItems[index],
+                        height: itemHeight,
+                        scrollScale: itemScrollScaleValues[index],
+                        isLongPressed: longPressedItemsFlags[index],
+                      );
+                    },
+                  ),
                 ),
               ),
             )
