@@ -6,10 +6,17 @@ import 'package:playable_menu_flutter/list_item_model.dart';
 import 'package:playable_menu_flutter/menu_item.dart';
 
 class PlayableMenuWidget extends StatefulWidget {
-  const PlayableMenuWidget({Key? key, required this.toolbarItems})
-      : super(key: key);
+  const PlayableMenuWidget({
+    Key? key,
+    required this.toolbarItems,
+    required this.toolbarHeight,
+    required this.toolbarWidth,
+  }) : super(key: key);
 
   final List<ListItemModel> toolbarItems;
+  final double toolbarHeight;
+  final double toolbarWidth;
+
   @override
   State<PlayableMenuWidget> createState() => _PlayableMenuWidgetState();
 }
@@ -93,15 +100,13 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        height: widget.toolbarItems.length > 10
-            ? Constants.toolbarHeight
-            : Constants.toolbarHeight / 2,
+        height: widget.toolbarHeight,
         margin: const EdgeInsets.only(left: Constants.toolbarHorizontalPadding),
         child: Stack(
           children: [
             Positioned(
               child: Container(
-                width: Constants.toolbarWidth,
+                width: widget.toolbarWidth,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
