@@ -132,18 +132,24 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
                 isLongPressed = false;
                 _updateLongPressedItemsFlags(longPressYLocation: 0);
               },
-              child: ListView.builder(
-                controller: scrollController,
-                itemCount: widget.toolbarItems.length,
-                padding: const EdgeInsets.all(10),
-                itemBuilder: (context, index) {
-                  return SideBarItem(
-                    widget.toolbarItems[index],
-                    height: itemHeight,
-                    scrollScale: itemScrollScaleValues[index],
-                    isLongPressed: longPressedItemsFlags[index],
-                  );
-                },
+              child: AnimatedContainer(
+                duration: Constants.longPressAnimationDuration,
+                width: isLongPressed
+                    ? Constants.toolbarWidth * 2
+                    : Constants.toolbarWidth,
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: widget.toolbarItems.length,
+                  padding: const EdgeInsets.all(10),
+                  itemBuilder: (context, index) {
+                    return SideBarItem(
+                      widget.toolbarItems[index],
+                      height: itemHeight,
+                      scrollScale: itemScrollScaleValues[index],
+                      isLongPressed: longPressedItemsFlags[index],
+                    );
+                  },
+                ),
               ),
             )
           ],
