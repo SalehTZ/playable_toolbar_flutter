@@ -9,13 +9,28 @@ class PlayableMenuWidget extends StatefulWidget {
   const PlayableMenuWidget({
     Key? key,
     required this.toolbarItems,
-    required this.toolbarHeight,
-    required this.toolbarWidth,
+    this.toolbarHeight = 420,
+    this.toolbarWidth = 70,
+    this.itemsGutter = 10,
+    this.itemsOffset = 60,
+    this.toolbarVerticalPadding = 10,
+    this.toolbarHorizontalPadding = 10,
   }) : super(key: key);
 
   final List<ListItemModel> toolbarItems;
   final double toolbarHeight;
   final double toolbarWidth;
+  final double itemsGutter;
+  final double itemsOffset;
+  // final int itemsInView = 7;
+  final double toolbarVerticalPadding;
+  final double toolbarHorizontalPadding;
+
+  // final Duration longPressAnimationDuration = Duration(milliseconds: 400);
+  // final Duration scrollScaleAnimationDuration = Duration(milliseconds: 700);
+
+  // final Curve longPressAnimationCurve = Curves.easeOutSine;
+  // final Curve scrollScaleAnimationCurve = Curves.ease;
 
   @override
   State<PlayableMenuWidget> createState() => _PlayableMenuWidgetState();
@@ -25,7 +40,7 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
   late ScrollController scrollController;
 
   double get itemHeight =>
-      Constants.toolbarWidth - (Constants.toolbarHorizontalPadding * 2);
+      widget.toolbarWidth - (widget.toolbarHorizontalPadding * 2);
 
   void scrollListener() {
     if (scrollController.hasClients) {
@@ -45,7 +60,7 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
           longPressYLocation <
               (itemYPositions.length > i + 1
                   ? itemYPositions[i + 1]
-                  : Constants.toolbarHeight);
+                  : widget.toolbarHeight);
       _longPressedItemsFlags.add(isLongPressed);
     }
     setState(() {
@@ -66,7 +81,7 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
       double itemBottomPosition =
           (i + 1) * (itemHeight + Constants.itemsGutter);
       double distanceToMaxScrollExtent =
-          Constants.toolbarHeight + scrollPosition - itemTopPosition;
+          widget.toolbarHeight + scrollPosition - itemTopPosition;
       bool itemIsOutOfView =
           distanceToMaxScrollExtent < 0 || scrollPosition > itemBottomPosition;
       _itemScrollScaleValues.add(itemIsOutOfView ? 0.4 : 1);
@@ -101,7 +116,7 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
       alignment: Alignment.centerLeft,
       child: Container(
         height: widget.toolbarHeight,
-        margin: const EdgeInsets.only(left: Constants.toolbarHorizontalPadding),
+        margin: EdgeInsets.only(left: widget.toolbarHorizontalPadding),
         child: Stack(
           children: [
             Positioned(
@@ -142,8 +157,8 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
               child: AnimatedContainer(
                 duration: Constants.longPressAnimationDuration,
                 width: isLongPressed
-                    ? Constants.toolbarWidth * 3
-                    : Constants.toolbarWidth,
+                    ? widget.toolbarWidth * 3
+                    : widget.toolbarWidth,
                 child: ScrollConfiguration(
                   behavior: ScrollConfiguration.of(context)
                       .copyWith(scrollbars: false),

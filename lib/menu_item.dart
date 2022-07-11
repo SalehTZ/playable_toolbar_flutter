@@ -10,6 +10,8 @@ class SideBarItem extends StatelessWidget {
     required this.scrollScale,
     this.isLongPressed = false,
     this.gutter = 10,
+    this.toolbarWidth,
+    this.itemsOffset,
   }) : super(key: key);
 
   final ListItemModel toolbarItem;
@@ -17,6 +19,8 @@ class SideBarItem extends StatelessWidget {
   final double scrollScale;
   final bool isLongPressed;
   final double gutter;
+  final double? toolbarWidth;
+  final double? itemsOffset;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,7 @@ class SideBarItem extends StatelessWidget {
                   duration: Constants.longPressAnimationDuration,
                   curve: Constants.scrollScaleAnimationCurve,
                   height: height + (isLongPressed ? 10 : 0),
-                  width: isLongPressed ? Constants.toolbarWidth * 2 : height,
+                  width: isLongPressed ? toolbarWidth! * 2 : height,
                   decoration: BoxDecoration(
                     color: toolbarItem.color,
                     borderRadius: const BorderRadius.all(Radius.circular(12)),
@@ -51,7 +55,7 @@ class SideBarItem extends StatelessWidget {
                   alignment: Alignment.center,
                   margin: EdgeInsets.only(
                     bottom: gutter,
-                    left: isLongPressed ? Constants.itemsOffset : 0,
+                    left: isLongPressed ? itemsOffset! : 0,
                   ),
                 ),
               ),
@@ -61,7 +65,7 @@ class SideBarItem extends StatelessWidget {
                   curve: Constants.longPressAnimationCurve,
                   padding: EdgeInsets.only(
                     bottom: gutter,
-                    left: 12 + (isLongPressed ? Constants.itemsOffset : 0),
+                    left: 12 + (isLongPressed ? itemsOffset! : 0),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
