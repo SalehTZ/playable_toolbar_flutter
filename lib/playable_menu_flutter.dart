@@ -172,6 +172,9 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
                         height: itemHeight,
                         scrollScale: itemScrollScaleValues[index],
                         isLongPressed: longPressedItemsFlags[index],
+                        gutter: widget.itemsGutter,
+                        itemsOffset: widget.itemsOffset,
+                        toolbarWidth: widget.toolbarWidth,
                       );
                     },
                   ),
