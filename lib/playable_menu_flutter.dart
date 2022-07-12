@@ -18,6 +18,7 @@ class PlayableMenuWidget extends StatefulWidget {
     this.toolbarBackgroundRadius = 15,
     this.toolbarBackgroundColor = Colors.white,
     this.toolbarShadow = Colors.black26,
+    this.toolbarAlignment = Alignment.centerLeft,
   }) : super(key: key);
 
   final List<ListItemModel> toolbarItems;
@@ -31,6 +32,7 @@ class PlayableMenuWidget extends StatefulWidget {
   final Color toolbarBackgroundColor;
   final double toolbarBackgroundRadius;
   final Color toolbarShadow;
+  final Alignment toolbarAlignment;
 
   // final Duration longPressAnimationDuration = Duration(milliseconds: 400);
   // final Duration scrollScaleAnimationDuration = Duration(milliseconds: 700);
@@ -119,7 +121,7 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: widget.toolbarAlignment,
       child: Container(
         height: widget.toolbarHeight,
         margin: EdgeInsets.only(left: widget.toolbarHorizontalPadding),
