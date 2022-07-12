@@ -15,6 +15,9 @@ class PlayableMenuWidget extends StatefulWidget {
     this.itemsOffset = 60,
     this.toolbarVerticalPadding = 10,
     this.toolbarHorizontalPadding = 10,
+    this.toolbarBackgroundRadius = 15,
+    this.toolbarBackgroundColor = Colors.white,
+    this.toolbarShadow = Colors.black26,
   }) : super(key: key);
 
   final List<ListItemModel> toolbarItems;
@@ -25,6 +28,9 @@ class PlayableMenuWidget extends StatefulWidget {
   // final int itemsInView = 7;
   final double toolbarVerticalPadding;
   final double toolbarHorizontalPadding;
+  final Color toolbarBackgroundColor;
+  final double toolbarBackgroundRadius;
+  final Color toolbarShadow;
 
   // final Duration longPressAnimationDuration = Duration(milliseconds: 400);
   // final Duration scrollScaleAnimationDuration = Duration(milliseconds: 700);
@@ -123,12 +129,13 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
               child: Container(
                 width: widget.toolbarWidth,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
+                  color: widget.toolbarBackgroundColor,
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(widget.toolbarBackgroundRadius)),
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 20,
-                      color: Colors.black.withOpacity(0.2),
+                      color: widget.toolbarShadow,
                     ),
                   ],
                 ),
@@ -157,7 +164,7 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
               child: AnimatedContainer(
                 duration: Constants.longPressAnimationDuration,
                 width: isLongPressed
-                    ? widget.toolbarWidth * 3
+                    ? widget.toolbarWidth * 3.5
                     : widget.toolbarWidth,
                 child: ScrollConfiguration(
                   behavior: ScrollConfiguration.of(context)
