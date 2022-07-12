@@ -40,7 +40,7 @@ class SideBarItem extends StatelessWidget {
                 child: AnimatedContainer(
                   duration: Constants.longPressAnimationDuration,
                   curve: Constants.scrollScaleAnimationCurve,
-                  height: height + (isLongPressed ? 10 : 0),
+                  height: height + (isLongPressed ? 0 : 0),
                   width: isLongPressed ? toolbarWidth! * 2 : height,
                   decoration: BoxDecoration(
                     color: toolbarItem.color,
