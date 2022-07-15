@@ -57,7 +57,7 @@ class _PlayableToolbarWidgetState extends State<PlayableToolbarWidget> {
   List<bool> longPressedItemsFlags = [];
 
   void _updateLongPressedItemsFlags({double longPressYLocation = 0}) {
-    List<bool> _longPressedItemsFlags = [];
+    List<bool> longPressedItemsFlags = [];
     for (int i = 0; i <= widget.toolbarItems.length - 1; i++) {
       bool isLongPressed = itemYPositions[i] >= 0 &&
           longPressYLocation > itemYPositions[i] &&
@@ -65,10 +65,10 @@ class _PlayableToolbarWidgetState extends State<PlayableToolbarWidget> {
               (itemYPositions.length > i + 1
                   ? itemYPositions[i + 1]
                   : widget.toolbarHeight);
-      _longPressedItemsFlags.add(isLongPressed);
+      longPressedItemsFlags.add(isLongPressed);
     }
     setState(() {
-      longPressedItemsFlags = _longPressedItemsFlags;
+      longPressedItemsFlags = longPressedItemsFlags;
     });
   }
 
@@ -76,22 +76,22 @@ class _PlayableToolbarWidgetState extends State<PlayableToolbarWidget> {
   List<double> itemYPositions = [];
 
   void _updateItemsScrollData({double scrollPosition = 0}) {
-    List<double> _itemScrollScaleValues = [];
-    List<double> _itemYPositions = [];
+    List<double> itemScrollScaleValues = [];
+    List<double> itemYPositions = [];
     for (int i = 0; i <= widget.toolbarItems.length - 1; i++) {
       double itemTopPosition = i * (itemHeight + widget.itemsGutter);
-      _itemYPositions.add(itemTopPosition - scrollPosition);
+      itemYPositions.add(itemTopPosition - scrollPosition);
 
       double itemBottomPosition = (i + 1) * (itemHeight + widget.itemsGutter);
       double distanceToMaxScrollExtent =
           widget.toolbarHeight + scrollPosition - itemTopPosition;
       bool itemIsOutOfView =
           distanceToMaxScrollExtent < 0 || scrollPosition > itemBottomPosition;
-      _itemScrollScaleValues.add(itemIsOutOfView ? 0.4 : 1);
+      itemScrollScaleValues.add(itemIsOutOfView ? 0.4 : 1);
     }
     setState(() {
-      itemScrollScaleValues = _itemScrollScaleValues;
-      itemYPositions = _itemYPositions;
+      itemScrollScaleValues = itemScrollScaleValues;
+      itemYPositions = itemYPositions;
     });
   }
 
