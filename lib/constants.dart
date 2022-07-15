@@ -1,7 +1,7 @@
 import 'package:flutter/animation.dart';
 
 class Constants {
-  static const double itemsGutter = 10;
+  // static const double itemsGutter = 10;
   // static const double toolbarHeight = 420;
   // static const double toolbarWidth = 70;
   // static const double itemsOffset = toolbarWidth - 10;

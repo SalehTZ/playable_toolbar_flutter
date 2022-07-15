@@ -1,24 +1,22 @@
-library playable_menu_flutter;
+library playable_toolbar_flutter;
 
 import 'package:flutter/material.dart';
-import 'package:playable_menu_flutter/constants.dart';
-import 'package:playable_menu_flutter/list_item_model.dart';
-import 'package:playable_menu_flutter/menu_item.dart';
+import 'package:playable_toolbar_flutter/constants.dart';
+import 'package:playable_toolbar_flutter/list_item_model.dart';
+import 'package:playable_toolbar_flutter/menu_item.dart';
 
-class PlayableMenuWidget extends StatefulWidget {
-  const PlayableMenuWidget({
+class PlayableToolbarWidget extends StatefulWidget {
+  const PlayableToolbarWidget({
     Key? key,
     required this.toolbarItems,
     this.toolbarHeight = 420,
     this.toolbarWidth = 70,
     this.itemsGutter = 10,
     this.itemsOffset = 60,
-    this.toolbarVerticalPadding = 10,
     this.toolbarHorizontalPadding = 10,
     this.toolbarBackgroundRadius = 15,
     this.toolbarBackgroundColor = Colors.white,
     this.toolbarShadow = Colors.black26,
-    // this.toolbarAlignment = Alignment.centerLeft,
   }) : super(key: key);
 
   final List<ListItemModel> toolbarItems;
@@ -26,25 +24,23 @@ class PlayableMenuWidget extends StatefulWidget {
   final double toolbarWidth;
   final double itemsGutter;
   final double itemsOffset;
-  // final int itemsInView = 7;
-  final double toolbarVerticalPadding;
   final double toolbarHorizontalPadding;
   final Color toolbarBackgroundColor;
   final double toolbarBackgroundRadius;
   final Color toolbarShadow;
-  // final Alignment toolbarAlignment; // will be added in next updates
 
+  // these attributes will be added in future updates
+  // final Alignment toolbarAlignment;
   // final Duration longPressAnimationDuration = Duration(milliseconds: 400);
   // final Duration scrollScaleAnimationDuration = Duration(milliseconds: 700);
-
   // final Curve longPressAnimationCurve = Curves.easeOutSine;
   // final Curve scrollScaleAnimationCurve = Curves.ease;
 
   @override
-  State<PlayableMenuWidget> createState() => _PlayableMenuWidgetState();
+  State<PlayableToolbarWidget> createState() => _PlayableToolbarWidgetState();
 }
 
-class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
+class _PlayableToolbarWidgetState extends State<PlayableToolbarWidget> {
   late ScrollController scrollController;
 
   double get itemHeight =>
@@ -83,11 +79,10 @@ class _PlayableMenuWidgetState extends State<PlayableMenuWidget> {
     List<double> _itemScrollScaleValues = [];
     List<double> _itemYPositions = [];
     for (int i = 0; i <= widget.toolbarItems.length - 1; i++) {
-      double itemTopPosition = i * (itemHeight + Constants.itemsGutter);
+      double itemTopPosition = i * (itemHeight + widget.itemsGutter);
       _itemYPositions.add(itemTopPosition - scrollPosition);
 
-      double itemBottomPosition =
-          (i + 1) * (itemHeight + Constants.itemsGutter);
+      double itemBottomPosition = (i + 1) * (itemHeight + widget.itemsGutter);
       double distanceToMaxScrollExtent =
           widget.toolbarHeight + scrollPosition - itemTopPosition;
       bool itemIsOutOfView =

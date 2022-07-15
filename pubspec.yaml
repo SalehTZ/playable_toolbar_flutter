@@ -1,7 +1,7 @@
-name: playable_menu_flutter
+name: playable_toolbar_flutter
 description: A playable and customizable and easy-to-use toolbar made with flutter
 version: 0.0.1
-homepage: https://github.com/SalehTZ/playable_menu_flutter
+homepage: https://github.com/SalehTZ/playable_toolbar_flutter
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
