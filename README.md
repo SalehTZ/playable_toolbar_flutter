@@ -1,4 +1,4 @@
-![Pub](https://img.shields.io/pub/v/playable_menu_flutter)
+![Pub](https://img.shields.io/pub/v/playable_toolbar_flutter)
 
 # playable_toolbar_flutter
 
