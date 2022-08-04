@@ -54,16 +54,16 @@ class _PlayableToolbarWidgetState extends State<PlayableToolbarWidget> {
     }
   }
 
-  List<bool> _longPressedItemsFlags = [];
+  List<bool> longPressedItemsFlags = [];
 
   void _updateLongPressedItemsFlags({double longPressYLocation = 0}) {
-    List<bool> longPressedItemsFlags = [];
+    List<bool> _longPressedItemsFlags = [];
     for (int i = 0; i <= widget.toolbarItems.length - 1; i++) {
-      bool isLongPressed = _itemYPositions[i] >= 0 &&
-          longPressYLocation > _itemYPositions[i] &&
+      bool isLongPressed = itemYPositions[i] >= 0 &&
+          longPressYLocation > itemYPositions[i] &&
           longPressYLocation <
-              (_itemYPositions.length > i + 1
-                  ? _itemYPositions[i + 1]
+              (itemYPositions.length > i + 1
+                  ? itemYPositions[i + 1]
                   : widget.toolbarHeight);
       _longPressedItemsFlags.add(isLongPressed);
     }
@@ -72,12 +72,12 @@ class _PlayableToolbarWidgetState extends State<PlayableToolbarWidget> {
     });
   }
 
-  List<double> _itemScrollScaleValues = [];
-  List<double> _itemYPositions = [];
+  List<double> itemScrollScaleValues = [];
+  List<double> itemYPositions = [];
 
   void _updateItemsScrollData({double scrollPosition = 0}) {
-    List<double> itemScrollScaleValues = [];
-    List<double> itemYPositions = [];
+    List<double> _itemScrollScaleValues = [];
+    List<double> _itemYPositions = [];
     for (int i = 0; i <= widget.toolbarItems.length - 1; i++) {
       double itemTopPosition = i * (itemHeight + widget.itemsGutter);
       _itemYPositions.add(itemTopPosition - scrollPosition);
@@ -174,8 +174,8 @@ class _PlayableToolbarWidgetState extends State<PlayableToolbarWidget> {
                       return SideBarItem(
                         widget.toolbarItems[index],
                         height: itemHeight,
-                        scrollScale: _itemScrollScaleValues[index],
-                        isLongPressed: _longPressedItemsFlags[index],
+                        scrollScale: itemScrollScaleValues[index],
+                        isLongPressed: longPressedItemsFlags[index],
                         gutter: widget.itemsGutter,
                         itemsOffset: widget.itemsOffset,
                         toolbarWidth: widget.toolbarWidth,
