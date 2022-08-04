@@ -19,14 +19,75 @@ class PlayableToolbarWidget extends StatefulWidget {
     this.toolbarShadow = Colors.black26,
   }) : super(key: key);
 
+  /// List of items you want to add to toolbar.
   final List<ListItemModel> toolbarItems;
+
+  /// Height of toolbar.
+  ///
+  /// if not set, default will be :
+  /// ```dart
+  /// toolbarHeight = 420
+  /// ```
   final double toolbarHeight;
+
+  /// Width of toolbar.
+  ///
+  /// if not set, default will be :
+  /// ```dart
+  /// toolbarWidth = 70
+  /// ```
   final double toolbarWidth;
+
+  /// Gutter for items in toolbar.
+  ///
+  /// if not set, default will be :
+  /// ```dart
+  /// itemsGutter = 10
+  /// ```
   final double itemsGutter;
+
+  /// Offset for items in toolbar.
+  ///
+  /// if not set, default will be :
+  /// ```dart
+  /// itemsOffset = 60
+  /// ```
   final double itemsOffset;
+
+  /// Horizontal Padding of toolbar.
+  ///
+  /// if not set, default will be :
+  /// ```dart
+  /// toolbarHorizontalPadding = 10
+  /// ```
   final double toolbarHorizontalPadding;
+
+  /// Horizontal Padding of toolbar.
+  ///
+  /// if not set, default will be :
+  /// ```dart
+  /// toolbarBackgroundColor = Colors.white
+  /// ```
   final Color toolbarBackgroundColor;
+
+  /// Background radius of toolbar.
+  ///
+  /// if not set, default will be :
+  /// ```dart
+  /// toolbarBackgroundRadius = 15
+  /// ```
   final double toolbarBackgroundRadius;
+
+  /// Shadow color under toolbar.
+  ///
+  /// if not set, default will be :
+  /// ```dart
+  /// toolbarShadow = Colors.black26
+  /// ```
+  /// Note: To remove shadow just pass:
+  /// ```dart
+  /// Colors.transparent
+  /// ```
   final Color toolbarShadow;
 
   // these attributes will be added in future updates
