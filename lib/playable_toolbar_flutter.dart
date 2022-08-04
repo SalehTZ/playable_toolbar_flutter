@@ -54,44 +54,44 @@ class _PlayableToolbarWidgetState extends State<PlayableToolbarWidget> {
     }
   }
 
-  List<bool> longPressedItemsFlags = [];
+  List<bool> _longPressedItemsFlags = [];
 
   void _updateLongPressedItemsFlags({double longPressYLocation = 0}) {
     List<bool> longPressedItemsFlags = [];
     for (int i = 0; i <= widget.toolbarItems.length - 1; i++) {
-      bool isLongPressed = itemYPositions[i] >= 0 &&
-          longPressYLocation > itemYPositions[i] &&
+      bool isLongPressed = _itemYPositions[i] >= 0 &&
+          longPressYLocation > _itemYPositions[i] &&
           longPressYLocation <
-              (itemYPositions.length > i + 1
-                  ? itemYPositions[i + 1]
+              (_itemYPositions.length > i + 1
+                  ? _itemYPositions[i + 1]
                   : widget.toolbarHeight);
-      longPressedItemsFlags.add(isLongPressed);
+      _longPressedItemsFlags.add(isLongPressed);
     }
     setState(() {
-      longPressedItemsFlags = longPressedItemsFlags;
+      longPressedItemsFlags = _longPressedItemsFlags;
     });
   }
 
-  List<double> itemScrollScaleValues = [];
-  List<double> itemYPositions = [];
+  List<double> _itemScrollScaleValues = [];
+  List<double> _itemYPositions = [];
 
   void _updateItemsScrollData({double scrollPosition = 0}) {
     List<double> itemScrollScaleValues = [];
     List<double> itemYPositions = [];
     for (int i = 0; i <= widget.toolbarItems.length - 1; i++) {
       double itemTopPosition = i * (itemHeight + widget.itemsGutter);
-      itemYPositions.add(itemTopPosition - scrollPosition);
+      _itemYPositions.add(itemTopPosition - scrollPosition);
 
       double itemBottomPosition = (i + 1) * (itemHeight + widget.itemsGutter);
       double distanceToMaxScrollExtent =
           widget.toolbarHeight + scrollPosition - itemTopPosition;
       bool itemIsOutOfView =
           distanceToMaxScrollExtent < 0 || scrollPosition > itemBottomPosition;
-      itemScrollScaleValues.add(itemIsOutOfView ? 0.4 : 1);
+      _itemScrollScaleValues.add(itemIsOutOfView ? 0.4 : 1);
     }
     setState(() {
-      itemScrollScaleValues = itemScrollScaleValues;
-      itemYPositions = itemYPositions;
+      itemScrollScaleValues = _itemScrollScaleValues;
+      itemYPositions = _itemYPositions;
     });
   }
 
@@ -174,8 +174,8 @@ class _PlayableToolbarWidgetState extends State<PlayableToolbarWidget> {
                       return SideBarItem(
                         widget.toolbarItems[index],
                         height: itemHeight,
-                        scrollScale: itemScrollScaleValues[index],
-                        isLongPressed: longPressedItemsFlags[index],
+                        scrollScale: _itemScrollScaleValues[index],
+                        isLongPressed: _longPressedItemsFlags[index],
                         gutter: widget.itemsGutter,
                         itemsOffset: widget.itemsOffset,
                         toolbarWidth: widget.toolbarWidth,
